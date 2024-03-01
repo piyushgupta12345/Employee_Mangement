@@ -17,12 +17,10 @@ const EmployeeSchema = new Schema({
     salary: {
         type: Number,
         required: true
-    },
-    date: {
-        type: Date,
-        required: true,
-        default: Date()
     }
-})
+}, {
+    timestamps: true
+}
+)
 
 export const Employee = mongoose.models.Employee || mongoose.model('Employee', EmployeeSchema)
