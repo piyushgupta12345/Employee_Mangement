@@ -8,7 +8,7 @@ const EmployeeList = () => {
     const [employee, setEmployee] = useState([]);
 
     const getEmployeeList = async () => {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/employee`, {
+        const res = await fetch(`http://localhost:3000/api/employee`, {
             method: "GET"
         }
         )
@@ -24,7 +24,7 @@ const EmployeeList = () => {
 
     // delete employee function
     const deleteEmployee = async (_id) => {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/employee/${_id}`, {
+        const res = await fetch(`http://localhost:3000/api/employee/${_id}`, {
             method: "DELETE"
         })
 

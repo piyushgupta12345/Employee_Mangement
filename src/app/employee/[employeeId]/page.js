@@ -21,7 +21,7 @@ const EditEmployee = ({ params }) => {
 
     // Create Get Employee By Id Function
     const getEmployeeById = async () => {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/employee/${employeeId}`, {
+        const res = await fetch(`http://localhost:3000/api/employee/${employeeId}`, {
             method: 'GET',
         })
 
@@ -45,7 +45,7 @@ const EditEmployee = ({ params }) => {
     const updateEmployee = async () => {
 
         const res = await
-            fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/employee/${employeeId}`, {
+            fetch(`http://localhost:3000/api/employee/${employeeId}`, {
                 method: 'PUT',
                 headers: {
                     "content-type": "application/json",
