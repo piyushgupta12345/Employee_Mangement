@@ -1,10 +1,54 @@
-"use client" // use client 👉 For Client Component
+"use client"
 
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 
 
 const AddEmployee = () => {
+    // Employee State 
+    const [employee, setEmployee] = useState({
+        name: "",
+        email: "",
+        address: "",
+        salary: ""
+    });
+
+    // Create Add Employee Detail Function
+
+    const addEmployeeDetail = async () => {
+        const res = await fetch(`http://localhost:3000/api/employee`, {
+            method: 'POST',
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify({
+                name: employee.name,
+                email: employee.email,
+                address: employee.address,
+                salary: employee.salary
+            })
+        })
+
+        // Create Data 
+        const data = await res.json();
+
+        // Destructure Data 
+        const { msg, error } = data;
+        console.log(data);
+        // Condition 
+        if (error) {
+            alert(error) // Error Message
+        } else {
+            alert(msg) // Success Message
+            setEmployee({
+                name: "",
+                email: "",
+                address: "",
+                salary: ""
+            })
+        }
+    }
+
     return (
         <div className=' container mx-auto flex justify-center items-center h-screen'>
             {/* Main  */}
@@ -37,6 +81,11 @@ const AddEmployee = () => {
                             type="text"
                             name='employeeName'
                             placeholder='Enter name'
+                            value={employee.name}
+                            onChange={(e) => setEmployee({
+                                ...employee,
+                                name: e.target.value
+                            })}
                             className='border border-gray-400 hover:border-gray-700 w-96 px-1.5 py-1.5 rounded-md outline-none mb-5 placeholder-gray-400'
                         />
                     </div>
@@ -47,6 +96,11 @@ const AddEmployee = () => {
                             type="email"
                             name='employeeEmail'
                             placeholder='Enter email'
+                            value={employee.email}
+                            onChange={(e) => setEmployee({
+                                ...employee,
+                                email: e.target.value
+                            })}
                             className='border border-gray-400 hover:border-gray-700 w-96 px-1.5 py-1.5 rounded-md outline-none mb-5 placeholder-gray-400'
                         />
                     </div>
@@ -57,6 +111,11 @@ const AddEmployee = () => {
                             type="text"
                             name='employeeAddress'
                             placeholder='Enter address'
+                            value={employee.address}
+                            onChange={(e) => setEmployee({
+                                ...employee,
+                                address: e.target.value
+                            })}
                             className='border border-gray-400 hover:border-gray-700 w-96 px-1.5 py-1.5 rounded-md outline-none mb-5 placeholder-gray-400'
                         />
                     </div>
@@ -67,13 +126,18 @@ const AddEmployee = () => {
                             type="number"
                             name='employeeSalary'
                             placeholder='Enter salary'
+                            value={employee.salary}
+                            onChange={(e) => setEmployee({
+                                ...employee,
+                                salary: e.target.value
+                            })}
                             className='border border-gray-400 hover:border-gray-700 w-96 px-1.5 py-1.5 rounded-md outline-none mb-8 placeholder-gray-400'
                         />
                     </div>
 
                     {/* Add Button  */}
                     <div>
-                        <button
+                        <button onClick={addEmployeeDetail}
                             className=' bg-gray-100 hover:bg-gray-200 w-full py-1.5 border border-gray-400 rounded-md font-medium mb-5'>
                             Add Detail
                         </button>
