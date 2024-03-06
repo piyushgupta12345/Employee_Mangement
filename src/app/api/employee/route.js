@@ -15,7 +15,6 @@ export async function GET() {
                 data: findEmployee
             }
         )
-        // return NextResponse.json("hello")
     } catch (error) {
         console.log(error);
         return NextResponse.json(
@@ -31,7 +30,6 @@ export async function POST(request) {
     try {
         // fetch data 
         const { name, email, address, salary } = await request.json()
-
         
         // validations
         if ( !name || !email || !address || !salary) {
@@ -39,6 +37,16 @@ export async function POST(request) {
                 {
                     success: false,
                     msg: "All fields are required !!"
+                }
+            )
+        }
+
+        // check valid email
+        if(!email.includes('@')){
+            return NextResponse.json(
+                {
+                    success: false,
+                    msg: "Please enter the vaild email"
                 }
             )
         }
