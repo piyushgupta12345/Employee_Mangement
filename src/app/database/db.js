@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 export const connectToDB = async() =>{
     try {
-        const connection = await mongoose.connect('mongodb://0.0.0.0:27017',{
+        const connection = await mongoose.connect(`${process.env.PORT}`,{
             dbName:"employeeMangement2"
         })
         console.log("Database connection successfully !!");
