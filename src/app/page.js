@@ -1,3 +1,4 @@
+"use client"
 import Link from 'next/link';
 import React from 'react';
 
@@ -10,7 +11,8 @@ const Home = () => {
       {/* View Employee Details button */}
         <Link href='/employee/employeelist'>
           <button
-            className='border border-gray-400 rounded-lg font-medium px-3 py-1.5 mx-2'>
+            className='border border-gray-400 rounded-lg font-medium px-3 py-1.5 mx-2'
+            >
             View Employee Details
           </button>
         </Link>
