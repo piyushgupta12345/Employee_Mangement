@@ -16,7 +16,7 @@ const AddEmployee = () => {
     // Create Add Employee Detail Function
 
     const addEmployeeDetail = async () => {
-        const res = await fetch(`http://localhost:3000/api/employee`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/employee`, {
             method: 'POST',
             headers: {
                 "content-type": "application/json"
