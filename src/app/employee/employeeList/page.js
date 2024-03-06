@@ -8,7 +8,7 @@ const EmployeeList = () => {
     const [employee, setEmployee] = useState([]);
 
     const getEmployeeList = async () => {
-        const res = await fetch('http://localhost:3000/api/employee', {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/employee`, {
             method: "GET"
         }
         )
@@ -17,21 +17,14 @@ const EmployeeList = () => {
         const resData = await res.json();
 
         // destructure data
-        const { msg, error, data } = resData;
-
-        // condition
-        if (error) {
-            alert(error) // error msg
-        } else {
-            alert(msg) // success msg
-        }
+        const { data } = resData;
 
         setEmployee(data)
     }
 
     // delete employee function
     const deleteEmployee = async (_id) => {
-        const res = await fetch(`http://localhost:3000/api/employee/${_id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/employee/${_id}`, {
             method: "DELETE"
         })
 
@@ -177,7 +170,7 @@ const EmployeeList = () => {
                                                 </td>
                                                 {/* Delete Button */}
                                                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                    <div className="text-red-600 cursor-pointer " onClick={()=> deleteEmployee(_id)}>
+                                                    <div className="text-red-600 cursor-pointer " onClick={() => deleteEmployee(_id)}>
                                                         Delete
                                                     </div>
                                                 </td>

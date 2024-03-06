@@ -34,6 +34,8 @@ export async function PUT(request, {params}) {
         const {employeeId} = params;
         const employee = await Employee.findById(employeeId);
 
+        console.log(employee);
+
         // set name
         employee.name = name;
 
@@ -46,12 +48,12 @@ export async function PUT(request, {params}) {
         // set name
         employee.salary = salary;
 
-        const updateEmployee = await employee.Save()
+        const updateEmployee = await employee.save()
 
         return NextResponse.json(
             {
                 success: true,
-                msg: "Get single Employee found successfully !!",
+                msg: "Update Employee successfully !!",
                 data: updateEmployee
             }
         )
@@ -60,7 +62,7 @@ export async function PUT(request, {params}) {
         return NextResponse.json(
             {
                 success: false,
-                msg: "Single Employee found failed !!"
+                msg: "Update Employee  failed !!"
             }
         )
     }
